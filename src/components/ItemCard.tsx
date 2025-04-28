@@ -24,6 +24,10 @@ function ItemCard({ name, imgUrl, category, price }: ItemType) {
     }
 
     const renderName = (name: string) => {
+        if (window.innerWidth < 640) {
+            return name.slice(0, 15) + '...'
+        }
+
         if (name.length > 25) {
             return name.slice(0, 20) + '...'
         }
@@ -44,7 +48,7 @@ function ItemCard({ name, imgUrl, category, price }: ItemType) {
             <div className="mt-[calc(10%)]">
                 <p className="font-bold text-xs">{ category }</p>
                 <p title={name} >{ renderName(name) }</p>
-                <p>${ price.toFixed(2) }</p>
+                <p className="text-orange font-bold">${ price.toFixed(2) }</p>
             </div>
 
             <div className="flex justify-center">
@@ -56,7 +60,7 @@ function ItemCard({ name, imgUrl, category, price }: ItemType) {
                         className='add-to-cart-btn cart-btn'
                         onClick={() => handleAddToCart()}
                     >
-                        <img src='/icon-add-to-cart.svg'/>
+                        <img src='/icon-add-to-cart.svg' className="w-4 sm:w-5"/>
                         Add to Cart
                     </button>
                 }

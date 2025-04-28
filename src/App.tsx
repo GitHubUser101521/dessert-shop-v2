@@ -41,8 +41,8 @@ function App() {
         <>
             { animationOpen && <AnimationScreen /> }
             
-            <div className='bg-primary px-30'>
-                <div className='flex items-start gap-8 h-screen'>
+            <div className='bg-primary px-4 lg:px-30'>
+                <div className='flex flex-col lg:flex-row items-start lg:gap-8 h-screen'>
                     <Search />
                     <ItemDisplay />
                     <Cart />

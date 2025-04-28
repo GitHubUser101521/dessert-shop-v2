@@ -4,16 +4,8 @@ import { ConfirmOrderPopup } from '../components/Components'
 import CartCard from "./CartCard";
 
 function YesCartItems() {
-    const { cart } = useCartStore()
+    const { cart, countTotalPrice } = useCartStore()
     const { confirmOrderPopup, setConfirmOrderPopup } = useAppStore()
-
-    function countTotalPrice() {
-        let totalPrice: number = 0;
-
-        cart.forEach(item => totalPrice += (item.price * item.quantity))
-
-        return totalPrice
-    }
 
     return (
         <>

@@ -1,23 +1,9 @@
-import { useEffect, useState } from "react"
-import { ItemType } from "../stores/Types"
 import { ItemCard } from './Components'
 import useAppStore from "../stores/AppStore"
+import { allItems as items } from '../../data'
 
 function ItemDisplay() {
     const { searchInput, currentCategory, filterPrice } = useAppStore()
-    const [ items, setItems ] = useState<ItemType[]>([])
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/data.json')
-            const fetchedData = await response.json()
-
-            setItems(fetchedData.allItems)
-            console.log(fetchedData.allItems)
-        }
-
-        fetchData()
-    }, [])
 
     const filteredItems = items.filter(item => {
         if (currentCategory === 'all') {
@@ -29,7 +15,7 @@ function ItemDisplay() {
     })
     
     return (
-        <div className="w-5/10 h-full rounded-lg p-4 py-10 overflow-y-auto">
+        <div className="lg:w-5/10 h-full rounded-lg p-4 lg:py-10 overflow-y-auto">
             {
                 filteredItems.length <= 0 && 
                 <div className="w-full flex flex-col justify-center items-center h-full">
@@ -38,7 +24,7 @@ function ItemDisplay() {
                 </div>
             }
             
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {
                 filteredItems
                 .sort((a, b) => {
